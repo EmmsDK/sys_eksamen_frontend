@@ -6,6 +6,8 @@ import LoggedIn from "./components/LoggedIn";
 import {NavLink, Route, Routes} from "react-router-dom";
 import Joke from "./components/Joke.jsx";
 import Fact from "./components/Fact.jsx";
+import RandomFact from "./components/RandomFact";
+import axios from "axios";
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(false)
@@ -88,7 +90,9 @@ function App() {
     return (
         <div>
             <Header/>
+            
             <Routes>
+                <Route path="/randomfact" element={<RandomFact/>}></Route>
                 <Route exact path="/" element={<Home/>}></Route>
                 <Route path="/logout" element={<Logout/>}></Route>
             </Routes>

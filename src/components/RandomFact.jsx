@@ -1,37 +1,51 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function RandomFacts() {
-  const [facts, setFacts] = useState([]);
-  const [query, setQuery] = useState('');
+function RandomFact() {
+  const [input, setInput] = useState('');
+  const [fact, setFact] = useState('');
 
-  useEffect(() => {
-    const url = `https://random-facts1.p.rapidapi.com/fact/search?q=${query}`;
-    const headers = {
-      'X-RapidAPI-Key': 'd5dd72de82mshcf6fc0cf7c28a79p1bdbf0jsn5189c1b81892',
-      'X-RapidAPI-Host': 'random-facts1.p.rapidapi.com',
-    };
+  const handleInput = (event) => {
+    setInput(event.target.value);
+  };
 
-    fetch(url, { headers })
-      .then((response) => response.json())
-      .then((data) => setFacts(data.results))
-      .catch((error) => console.log(error));
-  }, [query]);
+  const handleGetFactClick = async () => {
+    if (input) {
+      const response = await axios.get(
+        'https://random-facts1.p.rapidapi.com/fact/search',
+        {
+          headers: {
+            'X-RapidAPI-Key': 'd5dd72de82mshcf6fc0cf7c28a79p1bdbf0jsn5189c1b81892',
+            'X-RapidAPI-Host': 'random-facts1.p.rapidapi.com',
+          },
+          params: {
+            fact: input,
+          },
+        }
+      );
+      setFact(input);
+    }
+  };
 
-  const handleInputChange = (event) => {
-    setQuery(event.target.value);
+  const handleSaveAsFavoriteClick = async () => {
+    if (fact) {
+      const response = await axios.post('http://example.com/favorites', {
+        fact: fact,
+      });
+      console.log(response.data);
+    }
   };
 
   return (
     <div>
-      <h1>Random Facts</h1>
-      <input type="text" value={query} onChange={handleInputChange} />
-      <ul>
-        {facts.map((fact) => (
-          <li key={fact.id}>{fact.text}</li>
-        ))}
-      </ul>
+      <input type="text" value={input} onChange={handleInput} />
+      <button onClick={handleGetFactClick}>Get Fact</button>
+      <p>{fact}</p>
+      {fact && (
+        <button onClick={handleSaveAsFavoriteClick}>Save as Favorite</button>
+      )}
     </div>
   );
 }
 
-export default RandomFacts;
+export default RandomFact;
