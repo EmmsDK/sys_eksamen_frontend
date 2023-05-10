@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import {FavURL} from '../Setting.js'
 
 function ProfilePage() {
     const [favorites, setFavorites] = useState([]);
 
     // Fetch favorite facts from the API on mount
     useEffect(() => {
-        fetch('https://localhost:8080/api/favorites')
+        fetch(FavURL)
             .then(response => response.json())
             .then(data => {
                 setFavorites(data);
@@ -15,7 +16,7 @@ function ProfilePage() {
 
     // Function to remove a favorite fact from the backend API and the state
     function removeFavorite(id) {
-        fetch(`https://localhost:8080/api/favorites/${id}`, { method: 'DELETE' })
+        fetch(FavURL+`${id}`, { method: 'DELETE' })
             .then(() => {
                 setFavorites(prevFavorites => prevFavorites.filter(favorite => favorite.id !== id));
             });

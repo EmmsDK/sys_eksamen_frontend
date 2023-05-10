@@ -6,8 +6,7 @@ import {NavLink, Route, Routes} from "react-router-dom";
 import Joke from "./components/Joke.jsx";
 import Fact from "./components/Fact.jsx";
 import RandomFact from "./components/RandomFact";
-import ProfilePage from "./components/ProfilePage";
-import axios from "axios";
+import AnimalFact from "./components/AnimalFact.jsx";
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(false)
@@ -37,6 +36,7 @@ function App() {
                         <li><NavLink to="/logout">Logout</NavLink></li>
                     ) : null}
                     <li><NavLink to="/randomfact">RandomFact</NavLink></li>
+                    <li><NavLink to="/animalfact">AnimalFact</NavLink></li>
                     {loggedIn ? (
                         <li><NavLink to="/profilepage">Profile</NavLink></li>
                     ) : null}
@@ -100,6 +100,7 @@ function App() {
 
             <Routes>
                 <Route path="/randomfact" element={<RandomFact/>}></Route>
+                <Route path="/animalfact" element={<AnimalFact/>}></Route>
                 <Route exact path="/" element={<Home/>}></Route>
                 <Route path="/logout" element={<Logout/>}></Route>
                 <Route path="/profilepage" element={<LoggedIn user={user} logout={logout} loggedIn={loggedIn}/>}></Route>

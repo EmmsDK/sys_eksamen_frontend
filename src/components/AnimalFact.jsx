@@ -1,30 +1,30 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {FactURL, FavURL, RapidKey} from '../Setting.js'
+import {AnimalURL, FavURL, RapidKey} from '../Setting.js'
 
-function RandomFact() {
+function AnimalFact() {
     const [input, setInput] = useState('');
-    const [fact, setFact] = useState('');
+    const [animalFact, setAnimalFact] = useState('');
 
     const handleInput = (event) => {
         setInput(event.target.value);
     };
 
-    const handleGetFactClick = async () => {
+    const handleGetAnimalFactClick = async () => {
         if (input) {
             const response = await axios.get(
-                FactURL,
+                AnimalURL,
                 {
                     headers: {
                         'X-RapidAPI-Key': RapidKey,
-                        'X-RapidAPI-Host': 'random-facts1.p.rapidapi.com',
+                        'X-RapidAPI-Host': 'animals-by-api-ninjas.p.rapidapi.com',
                     },
                     params: {
-                        fact: input,
+                        animalFact: input,
                     },
                 }
             );
-            setFact(input);
+            setAnimalFact(input);
         }
     };
 
@@ -39,9 +39,9 @@ function RandomFact() {
     }
 
     const handleSaveAsFavoriteClick = async () => {
-        if (fact) {
+        if (animalFact) {
             const response = await axios.post(FavURL, {
-                fact: fact,
+                animalFact: animalFact,
             });
             console.log(response.data);
         }
@@ -50,14 +50,14 @@ function RandomFact() {
     return (
         <div>
             <input type="text" value={input} onChange={handleInput}/>
-            <button onClick={handleGetFactClick}>Get Fact</button>
-            <p>{fact}</p>
-            {fact && (
+            <button onClick={handleGetAnimalFactClick}>Get Animal Fact</button>
+            <p>{animalFact}</p>
+            {animalFact && (
                 <button onClick={handleSaveAsFavoriteClick}>Save as Favorite</button>
             )}
         </div>
     );
 }
 
-export default RandomFact;
+export default AnimalFact;
 
