@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, {useState} from "react"
 import facade from "./apiFacade";
 import LogIn from "./components/LoginForm";
@@ -7,6 +6,7 @@ import {NavLink, Route, Routes} from "react-router-dom";
 import Joke from "./components/Joke.jsx";
 import Fact from "./components/Fact.jsx";
 import RandomFact from "./components/RandomFact";
+import ProfilePage from "./components/ProfilePage";
 import axios from "axios";
 
 function App() {
@@ -35,6 +35,10 @@ function App() {
                     <li><NavLink to="/">Home</NavLink></li>
                     {loggedIn ? (
                         <li><NavLink to="/logout">Logout</NavLink></li>
+                    ) : null}
+                    <li><NavLink to="/randomfact">RandomFact</NavLink></li>
+                    {loggedIn ? (
+                        <li><NavLink to="/profilepage">Profile</NavLink></li>
                     ) : null}
                 </ul>
                 <br/>
@@ -66,7 +70,7 @@ function App() {
                                 <div className="fact-container">
                                     <Fact/>
                                 </div>
-                                <LoggedIn user={user} logout={logout} loggedIn={loggedIn}/>
+
                             </div>
                         )}
                     </div>
@@ -74,6 +78,9 @@ function App() {
             </div>
         )
     }
+
+
+
 
     const Logout = () => {
         return (
@@ -90,12 +97,14 @@ function App() {
     return (
         <div>
             <Header/>
-            
+
             <Routes>
                 <Route path="/randomfact" element={<RandomFact/>}></Route>
                 <Route exact path="/" element={<Home/>}></Route>
                 <Route path="/logout" element={<Logout/>}></Route>
+                <Route path="/profilepage" element={<LoggedIn user={user} logout={logout} loggedIn={loggedIn}/>}></Route>
             </Routes>
+
         </div>
     )
 }
