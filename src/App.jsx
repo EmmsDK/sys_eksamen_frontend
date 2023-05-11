@@ -7,6 +7,7 @@ import Joke from "./components/Joke.jsx";
 import Fact from "./components/Fact.jsx";
 import RandomFact from "./components/RandomFact";
 import AnimalFact from "./components/AnimalFact.jsx";
+import InputField from "./components/InputField";
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(false)
@@ -65,6 +66,7 @@ function App() {
                                 <h3>Here is the joke of the day:</h3>
                                 <div className="joke-container">
                                     <Joke/>
+                                    <InputField/>
                                 </div>
                                 <h3>Here is the fact of the day:</h3>
                                 <div className="fact-container">
@@ -99,6 +101,7 @@ function App() {
             <Header/>
 
             <Routes>
+                
                 <Route path="/randomfact" element={<RandomFact/>}></Route>
                 <Route path="/animalfact" element={<AnimalFact/>}></Route>
                 <Route exact path="/" element={<Home/>}></Route>
