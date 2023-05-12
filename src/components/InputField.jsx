@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
-import { DTOUrl } from '../Setting';
+import React, { useState } from "react";
+import {DTOUrl} from "../Setting.js";
 
-const InputField = () => {
-  const [inputData, setInputData] = useState('');
+
+
+
+const InputField = ({ username }) => {
+  const [inputData, setInputData] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const response = await fetch(DTOUrl, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(inputData),
+      body: JSON.stringify(
+        { username: username, 
+        inputData: inputData 
+      }
+      ),
     });
 
     if (response.ok) {
@@ -32,7 +39,7 @@ const InputField = () => {
         Input:
         <input type="text" value={inputData} onChange={handleChange} />
       </label>
-      <button type="submit">Submit</button>
+      <button type="submit">{username}</button>
     </form>
   );
 };
