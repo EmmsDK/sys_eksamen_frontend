@@ -55,10 +55,12 @@ function App() {
 
     const Home = () => {
         return (
+            
             <div className="container">
                 <div className="row">
                     <div className="col-md-8 offset-md-2">
                         <h2>Home</h2>
+                        <InputField user={user} />
                         {!loggedIn ? (
                             <LogIn login={login}/>
                         ) : (
@@ -66,7 +68,7 @@ function App() {
                                 <h3>Here is the joke of the day:</h3>
                                 <div className="joke-container">
                                     <Joke/>
-                                    <InputField/>
+                                    
                                 </div>
                                 <h3>Here is the fact of the day:</h3>
                                 <div className="fact-container">

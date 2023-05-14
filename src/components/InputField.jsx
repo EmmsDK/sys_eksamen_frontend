@@ -4,9 +4,9 @@ import {DTOUrl} from "../Setting.js";
 
 
 
-const InputField = ({ username }) => {
+function InputField  ({ user })  {
+  
   const [inputData, setInputData] = useState("");
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -16,7 +16,8 @@ const InputField = ({ username }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(
-        { username: username, 
+        { 
+        username: user.username,
         inputData: inputData 
       }
       ),
@@ -39,7 +40,7 @@ const InputField = ({ username }) => {
         Input:
         <input type="text" value={inputData} onChange={handleChange} />
       </label>
-      <button type="submit">{username}</button>
+      <button type="submit">Get fact</button>
     </form>
   );
 };

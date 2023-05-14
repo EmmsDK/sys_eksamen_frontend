@@ -24,7 +24,7 @@ function LoggedIn({ user }) {
       </h5>
       <div>
         
-        <InputField username={user.username} />
+       
       </div>
     </div>
   );
