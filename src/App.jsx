@@ -3,8 +3,6 @@ import facade from "./apiFacade";
 import LogIn from "./components/LoginForm";
 import LoggedIn from "./components/LoggedIn";
 import {NavLink, Route, Routes} from "react-router-dom";
-import Joke from "./components/Joke.jsx";
-import Fact from "./components/Fact.jsx";
 import RandomFact from "./components/RandomFact";
 import AnimalFact from "./components/AnimalFact.jsx";
 import InputFieldAnimal from "./components/InputFieldAnimal";
@@ -47,7 +45,6 @@ function App() {
             </div>
         )
     }
-
     document.querySelectorAll('.blur').forEach(element => {
         element.addEventListener('click', () => {
             element.classList.remove('blur');
@@ -56,27 +53,23 @@ function App() {
 
     const Home = () => {
         return (
-            
             <div className="container">
                 <div className="row">
                     <div className="col-md-8 offset-md-2">
                         <h2>Home</h2>
-                        
                         {!loggedIn ? (
                             <LogIn login={login}/>
                         ) : (
                             <div>
                                 <h3>Here is the joke of the day:</h3>
                                 <div className="joke-container">
-                                    
-                                    <InputFieldAnimal user={user} />
+
+                                    <InputFieldAnimal user={user}/>
                                 </div>
                                 <h3>Here is the fact of the day:</h3>
                                 <div className="fact-container">
-                                    <Fact/>
                                     <InputFieldFact user={user}/>
                                 </div>
-
                             </div>
                         )}
                     </div>
@@ -84,9 +77,6 @@ function App() {
             </div>
         )
     }
-
-
-
 
     const Logout = () => {
         return (
@@ -103,16 +93,14 @@ function App() {
     return (
         <div>
             <Header/>
-
             <Routes>
-                
                 <Route path="/randomfact" element={<RandomFact/>}></Route>
                 <Route path="/animalfact" element={<AnimalFact/>}></Route>
                 <Route exact path="/" element={<Home/>}></Route>
                 <Route path="/logout" element={<Logout/>}></Route>
-                <Route path="/profilepage" element={<LoggedIn user={user} logout={logout} loggedIn={loggedIn}/>}></Route>
+                <Route path="/profilepage"
+                       element={<LoggedIn user={user} logout={logout} loggedIn={loggedIn}/>}></Route>
             </Routes>
-
         </div>
     )
 }

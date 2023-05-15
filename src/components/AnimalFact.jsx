@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {AnimalURL, FavAnimalURL, RapidKey} from '../Setting.js'
+import {AnimalAPIURL, FavAnimalURL, RapidKey} from '../Setting.js'
 
 function AnimalFact() {
     const [input, setInput] = useState('');
@@ -13,7 +13,7 @@ function AnimalFact() {
     const handleGetAnimalFactClick = async () => {
         if (input) {
             const response = await axios.get(
-                AnimalUrl,
+                AnimalAPIURL,
                 {
                     headers: {
                         'X-RapidAPI-Key': RapidKey,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import {FavFactURL, FavAnimalURL} from '../Setting.js'
 
@@ -25,13 +25,14 @@ function ProfilePage() {
 
     // Function to remove a favorite fact from the backend API and the state
     function removeFavoriteFact(id) {
-        fetch(FavFactURL+`${id}`, { method: 'DELETE' })
+        fetch(FavFactURL + `${id}`, {method: 'DELETE'})
             .then(() => {
                 setFavoriteFacts(prevFavorites => prevFavorites.filter(favorite => favorite.id !== id));
             });
     }
+
     function removeFavoriteAnimal(id) {
-        fetch(FavAnimalURL+`${id}`, { method: 'DELETE' })
+        fetch(FavAnimalURL + `${id}`, {method: 'DELETE'})
             .then(() => {
                 setFavoriteAnimals(prevFavorites => prevFavorites.filter(favorite => favorite.id !== id));
             });
@@ -64,5 +65,5 @@ function ProfilePage() {
     );
 }
 
-ReactDOM.render(<ProfilePage />, document.getElementById('root'));
+ReactDOM.render(<ProfilePage/>, document.getElementById('root'));
 export default ProfilePage;

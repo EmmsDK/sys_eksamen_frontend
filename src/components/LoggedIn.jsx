@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
 import facade from "../apiFacade.js";
-import InputField from "./InputField.jsx";
 import ProfilePage from "./ProfilePage.jsx";
 
 function LoggedIn({user}) {
@@ -23,8 +22,7 @@ function LoggedIn({user}) {
                 {user.username} with roles: {user.roles}
             </h5>
             <div>
-            <ProfilePage user={user} />
-
+                <ProfilePage user={user}/>
             </div>
         </div>
     );

@@ -79,7 +79,6 @@ function apiFacade() {
         logout,
         fetchData,
         readJwtToken,
-
     }
 }
 

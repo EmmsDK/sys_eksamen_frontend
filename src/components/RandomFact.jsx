@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {FactURL, FavFactURL, RapidKey} from '../Setting.js'
+import {FactAPIURL, FavFactURL, RapidKey} from '../Setting.js'
 
 function RandomFact() {
     const [input, setInput] = useState('');
@@ -13,7 +13,7 @@ function RandomFact() {
     const handleGetFactClick = async () => {
         if (input) {
             const response = await axios.get(
-                FactURL,
+                FactAPIURL,
                 {
                     headers: {
                         'X-RapidAPI-Key': RapidKey,
