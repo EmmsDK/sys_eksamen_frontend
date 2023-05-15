@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import facade from "../apiFacade.js";
-import InputField from "./InputField.jsx";
+
 
 function LoggedIn({ user }) {
   const [dataFromServer, setDataFromServer] = useState("Loading...");

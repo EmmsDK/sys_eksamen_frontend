@@ -7,7 +7,8 @@ import Joke from "./components/Joke.jsx";
 import Fact from "./components/Fact.jsx";
 import RandomFact from "./components/RandomFact";
 import AnimalFact from "./components/AnimalFact.jsx";
-import InputField from "./components/InputField";
+import InputFieldAnimal from "./components/InputFieldAnimal";
+import InputFieldFact from "./components/InputFieldFact";
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(false)
@@ -60,19 +61,20 @@ function App() {
                 <div className="row">
                     <div className="col-md-8 offset-md-2">
                         <h2>Home</h2>
-                        <InputField user={user} />
+                        
                         {!loggedIn ? (
                             <LogIn login={login}/>
                         ) : (
                             <div>
                                 <h3>Here is the joke of the day:</h3>
                                 <div className="joke-container">
-                                    <Joke/>
                                     
+                                    <InputFieldAnimal user={user} />
                                 </div>
                                 <h3>Here is the fact of the day:</h3>
                                 <div className="fact-container">
                                     <Fact/>
+                                    <InputFieldFact user={user}/>
                                 </div>
 
                             </div>

@@ -1,13 +1,13 @@
 import React from "react";
 import {useState} from "react";
-import {DTOUrl} from "../Setting.js";
+import {AnimalUrl} from "../Setting.js";
 
 const Joke = () => {
     const [joke, setJoke] = useState("");
 
     const fetchJoke = async (e) => {
         e.preventDefault();
-        const response = await fetch(DTOUrl);
+        const response = await fetch(AnimalUrl);
         const data = await response.json();
         setJoke(data.joke);
         console.log(response)

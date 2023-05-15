@@ -1,13 +1,13 @@
 import React from "react";
 import {useState} from "react";
-import {DTOUrl} from "../Setting.js";
+import {AnimalUrl} from "../Setting.js";
 
 const Fact = () => {
     const [fact, setFact] = useState("");
 
     const fetchFact = async (e) => {
         e.preventDefault();
-        const response = await fetch(DTOUrl);
+        const response = await fetch(AnimalUrl);
         const data = await response.json();
         setFact(data.fact);
         console.log(response)
