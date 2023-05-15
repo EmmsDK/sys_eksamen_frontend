@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {AnimalUrl, FavURL, RapidKey} from '../Setting.js'
+import {AnimalURL, FavAnimalURL, RapidKey} from '../Setting.js'
 
 function AnimalFact() {
     const [input, setInput] = useState('');
@@ -40,7 +40,7 @@ function AnimalFact() {
 
     const handleSaveAsFavoriteClick = async () => {
         if (animalFact) {
-            const response = await axios.post(FavURL, {
+            const response = await axios.post(FavAnimalURL, {
                 animalFact: animalFact,
             });
             console.log(response.data);
