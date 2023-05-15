@@ -1,24 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import {FavURL} from '../Setting.js'
+import {FavFactURL, FavAnimalURL} from '../Setting.js'
 
 function ProfilePage() {
-    const [favorites, setFavorites] = useState([]);
+    const [favoriteFacts, setFavoriteFacts] = useState([]);
+    const [favoriteAnimals, setFavoriteAnimals] = useState([]);
 
     // Fetch favorite facts from the API on mount
     useEffect(() => {
-        fetch(FavURL)
+        fetch(FavFactURL)
             .then(response => response.json())
             .then(data => {
-                setFavorites(data);
+                setFavoriteFacts(data);
+            });
+    }, []);
+
+    useEffect(() => {
+        fetch(FavAnimalURL)
+            .then(response => response.json())
+            .then(data => {
+                setFavoriteAnimals(data);
             });
     }, []);
 
     // Function to remove a favorite fact from the backend API and the state
-    function removeFavorite(id) {
-        fetch(FavURL+`${id}`, { method: 'DELETE' })
+    function removeFavoriteFact(id) {
+        fetch(FavFactURL+`${id}`, { method: 'DELETE' })
             .then(() => {
-                setFavorites(prevFavorites => prevFavorites.filter(favorite => favorite.id !== id));
+                setFavoriteFacts(prevFavorites => prevFavorites.filter(favorite => favorite.id !== id));
+            });
+    }
+    function removeFavoriteAnimal(id) {
+        fetch(FavAnimalURL+`${id}`, { method: 'DELETE' })
+            .then(() => {
+                setFavoriteAnimals(prevFavorites => prevFavorites.filter(favorite => favorite.id !== id));
             });
     }
 
@@ -26,12 +41,21 @@ function ProfilePage() {
         <div>
             <h1>Welcome to my profile page</h1>
             <div>
-                <h3>Favorite Facts:</h3>
+                <h3>Favorite Random Facts:</h3>
                 <ul>
-                    {favorites.map(favorite => (
+                    {favoriteFacts.map(favorite => (
                         <li key={favorite.id}>
                             <span>{favorite.body}</span>
-                            <button onClick={() => removeFavorite(favorite.id)}>Remove</button>
+                            <button onClick={() => removeFavoriteFact(favorite.id)}>Remove</button>
+                        </li>
+                    ))}
+                </ul>
+                <h3>Favorite Animal Facts:</h3>
+                <ul>
+                    {favoriteAnimals.map(favorite => (
+                        <li key={favorite.id}>
+                            <span>{favorite.body}</span>
+                            <button onClick={() => removeFavoriteAnimal(favorite.id)}>Remove</button>
                         </li>
                     ))}
                 </ul>

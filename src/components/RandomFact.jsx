@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {FactURL, FavURL, RapidKey} from '../Setting.js'
+import {FactURL, FavFactURL, RapidKey} from '../Setting.js'
 
 function RandomFact() {
     const [input, setInput] = useState('');
@@ -40,7 +40,7 @@ function RandomFact() {
 
     const handleSaveAsFavoriteClick = async () => {
         if (fact) {
-            const response = await axios.post(FavURL, {
+            const response = await axios.post(FavFactURL, {
                 fact: fact,
             });
             console.log(response.data);
