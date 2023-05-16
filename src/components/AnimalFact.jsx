@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {AnimalAPIURL, FavAnimalURL, RapidKey} from '../Setting.js'
+import {AnimalAPIURL, FavAnimalURL, RapidKey, AnimalTestURL} from '../Setting.js'
 
 function AnimalFact() {
     const [input, setInput] = useState('');
@@ -11,20 +11,12 @@ function AnimalFact() {
     };
 
     const handleGetAnimalFactClick = async () => {
-        if (input) {
-            const response = await axios.get(
-                AnimalAPIURL,
-                {
-                    headers: {
-                        'X-RapidAPI-Key': RapidKey,
-                        'X-RapidAPI-Host': 'animals-by-api-ninjas.p.rapidapi.com',
-                    },
-                    params: {
-                        animalFact: input,
-                    },
-                }
-            );
-            setAnimalFact(input);
+        try {
+            const response = await axios.get(AnimalTestURL);
+            const data = response.data;
+            setAnimalFact(data);
+        } catch (error) {
+            console.error('Error fetching animal fact:', error);
         }
     };
 

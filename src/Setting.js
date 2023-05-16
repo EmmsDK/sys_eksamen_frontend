@@ -2,7 +2,7 @@ export const
     URL = "http://localhost:8080/sys",
     AnimalUrl = "http://localhost:8080/sys/api/animal",
     FactUrl = "http://localhost:8080/sys/api/fact",
-
+    AnimalTestURL = "https://localhost:8080/sys/api/animal/test",
     FavFactURL = "https://localhost:8080/sys/api/fact/fav",
     FavAnimalURL = "https://localhost:8080/sys/api/animal/fav",
     FactAPIURL = "https://random-facts1.p.rapidapi.com/fact/search",
