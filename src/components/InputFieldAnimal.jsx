@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { AnimalUrl } from "../Setting.js";
+import Animal from "./Animal.jsx";
 
 function InputFieldAnimal({ user }) {
     const [inputData, setInputData] = useState("");
-    const [animalData, setAnimalData] = useState(null); // New state for animal data
+    const [animalData, setAnimalData] = useState("", "", ""); // New state for animal data
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -42,9 +43,7 @@ function InputFieldAnimal({ user }) {
             {animalData && ( // Conditionally render the animal fields
                 <div>
                     <h2>Animal Information</h2>
-                    <p>Animal Name: {animalData.animalName}</p>
-                    <p>Taxonomy: {animalData.taxonomy}</p>
-                    <p>Characteristics: {animalData.characteristics}</p>
+                    <Animal animalData={animalData} />
                 </div>
             )}
         </div>
