@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import {FavFactURL, FavAnimalURL} from '../Setting.js'
 
 function ProfilePage() {
@@ -7,6 +7,7 @@ function ProfilePage() {
     const [favoriteAnimals, setFavoriteAnimals] = useState([]);
 
     // Fetch favorite facts from the API on mount
+
     useEffect(() => {
         fetch(FavFactURL)
             .then(response => response.json())
@@ -15,15 +16,27 @@ function ProfilePage() {
             });
     }, []);
 
+
+
     useEffect(() => {
         fetch(FavAnimalURL)
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Request failed with status ' + response.status);
+                }
+                return response.json();
+            })
             .then(data => {
                 setFavoriteAnimals(data);
+            })
+            .catch(error => {
+                console.error('Error occurred during fetch:', error);
+                // Handle the error (e.g., show an error message, retry the request, etc.)
             });
     }, []);
 
-    // Function to remove a favorite fact from the backend API and the state
+
+// Function to remove a favorite fact from the backend API and the state
     function removeFavoriteFact(id) {
         fetch(FavFactURL + `${id}`, {method: 'DELETE'})
             .then(() => {
@@ -65,5 +78,5 @@ function ProfilePage() {
     );
 }
 
-ReactDOM.render(<ProfilePage/>, document.getElementById('root'));
+ReactDOM.createRoot(document.getElementById('root')).render(<ProfilePage/>);
 export default ProfilePage;
