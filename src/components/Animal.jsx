@@ -1,41 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-function Animal() {
-    const [animalName, setAnimalName] = useState('');
-    const [taxonomy, setTaxonomy] = useState('');
-    const [characteristics, setCharacteristics] = useState('');
-
-    const handleAnimalNameChange = (event) => {
-        setAnimalName(event.target.value);
-    };
-
-    const handleTaxonomyChange = (event) => {
-        setTaxonomy(event.target.value);
-    };
-
-    const handleCharacteristicsChange = (event) => {
-        setCharacteristics(event.target.value);
-    };
-
+function Animal({ animalName, taxonomy, characteristics }) {
     return (
         <div>
             <label>
                 Animal name:
-                <input type="text" value={animalName} onChange={handleAnimalNameChange} />
+                <textarea value={animalName} readOnly />
             </label>
             <br />
             <label>
                 Taxonomy:
-                <input type="text" value={taxonomy} onChange={handleTaxonomyChange} />
+                <textarea value={taxonomy} readOnly />
             </label>
             <br />
             <label>
                 Characteristics:
-                <input
-                    type="text"
-                    value={characteristics}
-                    onChange={handleCharacteristicsChange}
-                />
+                <textarea value={characteristics} readOnly />
             </label>
         </div>
     );

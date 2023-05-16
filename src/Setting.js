@@ -1,6 +1,6 @@
 export const
     URL = "http://localhost:8080/sys",
-    AnimalUrl = "http://localhost:8080/sys/api/animal",
+    AnimalUrl = "http://localhost:8080/sys/api/animal/test",
     FactUrl = "http://localhost:8080/sys/api/fact",
     AnimalTestURL = "https://localhost:8080/sys/api/animal/test",
     FavFactURL = "https://localhost:8080/sys/api/fact/fav",

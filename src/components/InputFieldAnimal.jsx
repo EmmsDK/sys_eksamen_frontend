@@ -12,20 +12,16 @@ function InputFieldAnimal({ user }) {
         const response = await fetch(AnimalUrl, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "text/plain",
             },
-            body: JSON.stringify({
-                inputData: inputData,
-            }),
+            body: inputData,
         });
 
-        if (response.ok) {
-            const data = await response.json();
-            setAnimalData(data); // Set the received animal data
-        } else {
-            // handle error
-        }
+        const data = await response.json();
+        console.log(data); // Log the response data
+        setAnimalData(data); // Set the received animal data
     };
+
 
     const handleChange = (event) => {
         setInputData(event.target.value);
@@ -40,12 +36,10 @@ function InputFieldAnimal({ user }) {
                 </label>
                 <button type="submit">Get fact</button>
             </form>
-            {animalData && ( // Conditionally render the animal fields
                 <div>
                     <h2>Animal Information</h2>
-                    <Animal animalData={animalData} />
+                    <Animal animalName={animalData.animalName} taxonomy={animalData.taxonomy} characteristics={animalData.characteristics}/>
                 </div>
-            )}
         </div>
     );
 }
