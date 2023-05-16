@@ -5,17 +5,17 @@ function Animal({ animalName, taxonomy, characteristics }) {
         <div>
             <label>
                 Animal name:
-                <textarea value={animalName} readOnly />
+                <div className="autoscale-field">{animalName}</div>
             </label>
             <br />
             <label>
                 Taxonomy:
-                <textarea value={taxonomy} readOnly />
+                <div className="autoscale-field">{taxonomy}</div>
             </label>
             <br />
             <label>
                 Characteristics:
-                <textarea value={characteristics} readOnly />
+                <div className="autoscale-field">{characteristics}</div>
             </label>
         </div>
     );

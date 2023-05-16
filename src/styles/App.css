@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+.autoscale-field {
+  display: inline-block;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  width: auto;
+  max-width: 100%;
+}
+.autoscale-field > span {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+}
