@@ -90,7 +90,7 @@ function App() {
             <Routes>
                 <Route exact path="/" element={<Home/>}></Route>
                 <Route path="/randomfact" element={<RandomFact/>}></Route>
-                <Route path="/animalfact" element={<InputFieldAnimal/>}></Route>
+                <Route path="/animalfact" element={<InputFieldAnimal user={user}/>}></Route>
                 <Route path="/logout" element={<Logout/>}></Route>
                 <Route path="/profilepage"
                        element={<LoggedIn user={user} logout={logout} loggedIn={loggedIn}/>}></Route>
