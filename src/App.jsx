@@ -32,14 +32,14 @@ function App() {
             <div>
                 <ul className="header">
                     <li><NavLink to="/">Home</NavLink></li>
-                    {loggedIn ? (
-                        <li><NavLink to="/logout">Logout</NavLink></li>
-                    ) : null}
+                    {loggedIn &&(
+                        <>
                     <li><NavLink to="/randomfact">RandomFact</NavLink></li>
                     <li><NavLink to="/animalfact">AnimalFact</NavLink></li>
-                    {loggedIn ? (
-                        <li><NavLink to="/profilepage">Profile</NavLink></li>
-                    ) : null}
+                    <li><NavLink to="/profilepage">Profile</NavLink></li>
+                    <li><NavLink to="/logout">Logout</NavLink></li>
+                        </>
+                        )}
                 </ul>
                 <br/>
             </div>
@@ -94,9 +94,9 @@ function App() {
         <div>
             <Header/>
             <Routes>
-                <Route path="/randomfact" element={<RandomFact/>}></Route>
-                <Route path="/animalfact" element={<AnimalFact/>}></Route>
                 <Route exact path="/" element={<Home/>}></Route>
+                <Route path="/randomfact" element={<RandomFact/>}></Route>
+                <Route path="/animalfact" element={<InputFieldAnimal/>}></Route>
                 <Route path="/logout" element={<Logout/>}></Route>
                 <Route path="/profilepage"
                        element={<LoggedIn user={user} logout={logout} loggedIn={loggedIn}/>}></Route>

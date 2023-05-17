@@ -4,18 +4,24 @@ function Animal({ animalName, taxonomy, characteristics }) {
     return (
         <div>
             <label>
-                Animal name:
+                <h3>Animal name:</h3>
                 <div className="autoscale-field">{animalName}</div>
             </label>
             <br />
             <label>
-                Taxonomy:
-                <div className="autoscale-field">{taxonomy}</div>
+                <h3>Taxonomy:</h3>
+                <div
+                    className="autoscale-field"
+                    dangerouslySetInnerHTML={{ __html: taxonomy }}
+                ></div>
             </label>
             <br />
             <label>
-                Characteristics:
-                <div className="autoscale-field">{characteristics}</div>
+                <h3>Characteristics:</h3>
+                <div
+                    className="autoscale-field"
+                    dangerouslySetInnerHTML={{ __html: characteristics }}
+                ></div>
             </label>
         </div>
     );
