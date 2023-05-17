@@ -1,0 +1,71 @@
+{"facts":[
+    {
+        "fact": "The tallest mountain in the solar system is Olympus Mons on Mars.",
+        "id": "2",
+        "category": "Science",
+        "subcategory": "Space"
+      }
+      ,
+      {
+        "fact": "A group of flamingos is called a flamboyance.",
+        "id": "3",
+        "category": "Animals",
+        "subcategory": "Birds"
+      }
+      ,
+      {
+        "fact": "The shortest war in history was between Britain and Zanzibar in 1896. It lasted only 38 minutes.",
+        "id": "4",
+        "category": "History",
+        "subcategory": "War"
+      }
+      ,
+      {
+        "fact": "The longest river in Asia is the Yangtze, which stretches for 3,915 miles.",
+        "id": "5",
+        "category": "Geography",
+        "subcategory": "Rivers"
+      }
+      ,
+      {
+        "fact": "The first recorded game of baseball was played in 1846 in Hoboken, New Jersey.",
+        "id": "6",
+        "category": "Sports",
+        "subcategory": "Baseball"
+      }
+      ,
+      {
+        "fact": "There are more possible iterations of a game of chess than there are atoms in the observable universe.",
+        "id": "7",
+        "category": "Games",
+        "subcategory": "Board Games"
+      }
+      ,
+      {
+        "fact": "The world's largest desert is the Sahara, which covers over 3.6 million square miles.",
+        "id": "8",
+        "category": "Geography",
+        "subcategory": "Deserts"
+      }
+      ,
+      {
+        "fact": "The Great Barrier Reef is the largest living structure on Earth, stretching over 1,400 miles.",
+        "id": "9",
+        "category": "Science",
+        "subcategory": "Biology"
+      }
+      ,
+      {
+        "fact": "The word 'queue' is the only word in the English language that is still pronounced the same way when the last four letters are removed.",
+        "id": "10",
+        "category": "Language",
+        "subcategory": "English"
+      }
+      ,
+      {
+        "fact": "The first successful flight by the Wright brothers lasted only 12 seconds and covered 120 feet.",
+        "id": "11",
+        "category": "History",
+        "subcategory": "Aviation"
+      }
+    ]}
