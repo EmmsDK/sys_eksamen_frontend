@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {AnimalAPIURL, FavAnimalURL, RapidKey, AnimalTestURL} from '../Setting.js'
+import {FavAnimalURL, AnimalUrl} from '../Setting.js'
 
 function AnimalFact() {
     const [input, setInput] = useState('');
@@ -12,7 +12,7 @@ function AnimalFact() {
 
     const handleGetAnimalFactClick = async () => {
         try {
-            const response = await axios.get(AnimalTestURL);
+            const response = await axios.get(AnimalUrl);
             const data = response.data;
             setAnimalFact(data);
         } catch (error) {

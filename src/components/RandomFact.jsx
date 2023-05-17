@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {FactAPIURL, FavFactURL, RapidKey} from '../Setting.js'
+import { FactUrl, FavFactURL} from '../Setting.js'
 
 function RandomFact() {
     const [input, setInput] = useState('');
@@ -11,20 +11,12 @@ function RandomFact() {
     };
 
     const handleGetFactClick = async () => {
-        if (input) {
-            const response = await axios.get(
-                FactAPIURL,
-                {
-                    headers: {
-                        'X-RapidAPI-Key': RapidKey,
-                        'X-RapidAPI-Host': 'random-facts1.p.rapidapi.com',
-                    },
-                    params: {
-                        fact: input,
-                    },
-                }
-            );
-            setFact(input);
+        try {
+            const response = await axios.get(FactUrl);
+            const data = response.data;
+            setFact(data);
+        } catch (error) {
+            console.error('Error fetching random fact:', error);
         }
     };
 

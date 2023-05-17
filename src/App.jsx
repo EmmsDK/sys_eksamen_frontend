@@ -4,7 +4,6 @@ import LogIn from "./components/LoginForm";
 import LoggedIn from "./components/LoggedIn";
 import {NavLink, Route, Routes} from "react-router-dom";
 import RandomFact from "./components/RandomFact";
-import AnimalFact from "./components/AnimalFact.jsx";
 import InputFieldAnimal from "./components/InputFieldAnimal";
 import InputFieldFact from "./components/InputFieldFact";
 
