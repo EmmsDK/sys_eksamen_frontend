@@ -2,70 +2,70 @@
     {
         "fact": "The tallest mountain in the solar system is Olympus Mons on Mars.",
         "id": "2",
-        "category": "Science",
-        "subcategory": "Space"
+        "category": "science",
+        "subcategory": "space"
       }
       ,
       {
         "fact": "A group of flamingos is called a flamboyance.",
         "id": "3",
-        "category": "Animals",
-        "subcategory": "Birds"
+        "category": "animals",
+        "subcategory": "birds"
       }
       ,
       {
         "fact": "The shortest war in history was between Britain and Zanzibar in 1896. It lasted only 38 minutes.",
         "id": "4",
-        "category": "History",
-        "subcategory": "War"
+        "category": "history",
+        "subcategory": "war"
       }
       ,
       {
         "fact": "The longest river in Asia is the Yangtze, which stretches for 3,915 miles.",
         "id": "5",
-        "category": "Geography",
-        "subcategory": "Rivers"
+        "category": "geography",
+        "subcategory": "rivers"
       }
       ,
       {
         "fact": "The first recorded game of baseball was played in 1846 in Hoboken, New Jersey.",
         "id": "6",
-        "category": "Sports",
-        "subcategory": "Baseball"
+        "category": "sports",
+        "subcategory": "baseball"
       }
       ,
       {
         "fact": "There are more possible iterations of a game of chess than there are atoms in the observable universe.",
         "id": "7",
-        "category": "Games",
-        "subcategory": "Board Games"
+        "category": "games",
+        "subcategory": "board games"
       }
       ,
       {
         "fact": "The world's largest desert is the Sahara, which covers over 3.6 million square miles.",
         "id": "8",
-        "category": "Geography",
-        "subcategory": "Deserts"
+        "category": "geography",
+        "subcategory": "deserts"
       }
       ,
       {
         "fact": "The Great Barrier Reef is the largest living structure on Earth, stretching over 1,400 miles.",
         "id": "9",
-        "category": "Science",
-        "subcategory": "Biology"
+        "category": "science",
+        "subcategory": "biology"
       }
       ,
       {
         "fact": "The word 'queue' is the only word in the English language that is still pronounced the same way when the last four letters are removed.",
         "id": "10",
-        "category": "Language",
-        "subcategory": "English"
+        "category": "language",
+        "subcategory": "english"
       }
       ,
       {
         "fact": "The first successful flight by the Wright brothers lasted only 12 seconds and covered 120 feet.",
         "id": "11",
-        "category": "History",
-        "subcategory": "Aviation"
+        "category": "history",
+        "subcategory": "aviation"
       }
     ]}
