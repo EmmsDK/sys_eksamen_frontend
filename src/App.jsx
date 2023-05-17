@@ -60,11 +60,6 @@ function App() {
                             <LogIn login={login}/>
                         ) : (
                             <div>
-                                <h3>Here is the joke of the day:</h3>
-                                <div className="joke-container">
-
-                                    <InputFieldAnimal user={user}/>
-                                </div>
                                 <h3>Here is the fact of the day:</h3>
                                 <div className="fact-container">
                                     <InputFieldFact user={user}/>
