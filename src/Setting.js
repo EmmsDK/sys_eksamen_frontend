@@ -4,6 +4,9 @@ export const
     FactUrl = "http://localhost:8080/sys/api/fact",
     FavFactURL = "http://localhost:8080/sys/api/fact/fav",
     FavAnimalURL = "http://localhost:8080/sys/api/animal/fav",
+    RemoveFavAnimalURL = "http://localhost:8080/sys/api/animal/removeFav",
+
+    AllFavAnimalURL = "http://localhost:8080/sys/api/animal/getFavs",
 
     FactAPIURL = "http://random-facts1.p.rapidapi.com/fact/search",
     AnimalAPIURL = "http://rapidapi.com/apininjas/api/animals-by-api-ninjas/",

@@ -40,7 +40,7 @@ function InputFieldAnimal({user}) {
                 body: jsonData,
             });
 
-            const data = await response.json();
+            const data = await response.text();
             console.log(data);
         }
     };

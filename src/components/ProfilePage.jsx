@@ -1,75 +1,60 @@
-import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom/client';
-import {FavFactURL, FavAnimalURL} from '../Setting.js'
+import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import { AllFavAnimalURL, RemoveFavAnimalURL} from '../Setting.js';
+import Animal from './Animal.jsx';
 
-function ProfilePage() {
-    const [favoriteFacts, setFavoriteFacts] = useState([]);
+function ProfilePage({ user }) {
     const [favoriteAnimals, setFavoriteAnimals] = useState([]);
 
-    // Fetch favorite facts from the API on mount
-
     useEffect(() => {
-        fetch(FavFactURL)
-            .then(response => response.json())
-            .then(data => {
-                setFavoriteFacts(data);
-            });
-    }, []);
+        // Check if the favorite animals data exists in local storage
+        const storedData = localStorage.getItem('favoriteAnimals');
+        if (storedData) {
+            setFavoriteAnimals(JSON.parse(storedData));
+        } else {
+            fetch(`${AllFavAnimalURL}?username=${user.username}`)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Request failed with status ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    setFavoriteAnimals(data);
+                    // Store the favorite animals data in local storage
+                    localStorage.setItem('favoriteAnimals', JSON.stringify(data));
+                })
+                .catch((error) => {
+                    console.error('Error occurred during fetch:', error);
+                    // Handle the error (e.g., show an error message, retry the request, etc.)
+                });
+        }
+    }, [user.username]);
 
-
-
-    useEffect(() => {
-        fetch(FavAnimalURL)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Request failed with status ' + response.status);
-                }
-                return response.json();
-            })
-            .then(data => {
-                setFavoriteAnimals(data);
-            })
-            .catch(error => {
-                console.error('Error occurred during fetch:', error);
-                // Handle the error (e.g., show an error message, retry the request, etc.)
-            });
-    }, []);
-
-
-// Function to remove a favorite fact from the backend API and the state
-    function removeFavoriteFact(id) {
-        fetch(FavFactURL + `${id}`, {method: 'DELETE'})
-            .then(() => {
-                setFavoriteFacts(prevFavorites => prevFavorites.filter(favorite => favorite.id !== id));
-            });
-    }
-
-    function removeFavoriteAnimal(id) {
-        fetch(FavAnimalURL + `${id}`, {method: 'DELETE'})
-            .then(() => {
-                setFavoriteAnimals(prevFavorites => prevFavorites.filter(favorite => favorite.id !== id));
-            });
+    function removeFavoriteAnimal(animalName) {
+        fetch(RemoveFavAnimalURL + `/${animalName}`, { method: 'DELETE' }).then(() => {
+            setFavoriteAnimals((prevFavorites) =>
+                prevFavorites.filter((_, i) => i !== index)
+            );
+            // Update the favorite animals data in local storage
+            localStorage.setItem('favoriteAnimals', JSON.stringify(favoriteAnimals));
+        });
     }
 
     return (
         <div>
             <h1>Welcome to my profile page</h1>
             <div>
-                <h3>Favorite Random Facts:</h3>
+                <h3>Favorite Animals:</h3>
                 <ul>
-                    {favoriteFacts.map(favorite => (
-                        <li key={favorite.id}>
-                            <span>{favorite.body}</span>
-                            <button onClick={() => removeFavoriteFact(favorite.id)}>Remove</button>
-                        </li>
-                    ))}
-                </ul>
-                <h3>Favorite Animal Facts:</h3>
-                <ul>
-                    {favoriteAnimals.map(favorite => (
-                        <li key={favorite.id}>
-                            <span>{favorite.body}</span>
-                            <button onClick={() => removeFavoriteAnimal(favorite.id)}>Remove</button>
+                    {favoriteAnimals.map((favorite, index) => (
+                        <li key={favorite.animalName}>
+                            <Animal
+                                animalName={favorite.animalName}
+                                taxonomy={favorite.taxonomy}
+                                characteristics={favorite.characteristics}
+                            />
+                            <button onClick={() => removeFavoriteAnimal(index)}>Remove</button>
                         </li>
                     ))}
                 </ul>
@@ -78,5 +63,4 @@ function ProfilePage() {
     );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<ProfilePage/>);
 export default ProfilePage;
