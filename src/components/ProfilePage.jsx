@@ -6,40 +6,42 @@ import "../styles/ProfilePage.css";
 
 function ProfilePage({ user }) {
     const [favoriteAnimals, setFavoriteAnimals] = useState([]);
+    const [refreshAnimals, setRefreshAnimals] = useState(false); // New refresh flag
 
     useEffect(() => {
-        // Check if the favorite animals data exists in local storage
-        const storedData = localStorage.getItem('favoriteAnimals');
-        if (storedData) {
-            setFavoriteAnimals(JSON.parse(storedData));
-        } else {
-            fetch(`${AllFavAnimalURL}?username=${user.username}`)
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Request failed with status ' + response.status);
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    setFavoriteAnimals(data);
-                    // Store the favorite animals data in local storage
-                    localStorage.setItem('favoriteAnimals', JSON.stringify(data));
-                })
-                .catch((error) => {
-                    console.error('Error occurred during fetch:', error);
-                    // Handle the error (e.g., show an error message, retry the request, etc.)
-                });
-        }
-    }, [user.username]);
+        fetch(`${AllFavAnimalURL}?username=${user.username}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Request failed with status ' + response.status);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                setFavoriteAnimals(data);
+                // Store the favorite animals data in local storage
+                localStorage.setItem('favoriteAnimals', JSON.stringify(data));
+            })
+            .catch((error) => {
+                console.error('Error occurred during fetch:', error);
+                // Handle the error (e.g., show an error message, retry the request, etc.)
+            });
+    }, [user.username, refreshAnimals]); // Include refreshAnimals in the dependency array
 
     function removeFavoriteAnimal(animalName) {
-        fetch(`${RemoveFavAnimalURL}/${animalName}`, { method: 'DELETE' })
+        fetch(`${RemoveFavAnimalURL}?username=${encodeURIComponent(user.username)}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'text/plain'
+            },
+            body: animalName
+        })
             .then(() => {
                 setFavoriteAnimals(prevFavorites =>
                     prevFavorites.filter(animal => animal.name !== animalName)
                 );
                 // Update the favorite animals data in local storage
                 localStorage.setItem('favoriteAnimals', JSON.stringify(favoriteAnimals));
+                setRefreshAnimals(prevRefresh => !prevRefresh); // Trigger refresh by toggling the flag
             })
             .catch(error => {
                 console.error('Error occurred while removing favorite animal:', error);
@@ -47,9 +49,11 @@ function ProfilePage({ user }) {
     }
 
 
+
+
     return (
         <div>
-            <h1>Welcome to my profile page</h1>
+            <h1>Welcome to my profile page</h1> {/* Add onClick handler to the header */}
             <div>
                 <h1>Favorite Animals:</h1>
                 <ul className="favorite-animal-list">
@@ -67,7 +71,6 @@ function ProfilePage({ user }) {
             </div>
         </div>
     );
-
 }
 
 export default ProfilePage;
