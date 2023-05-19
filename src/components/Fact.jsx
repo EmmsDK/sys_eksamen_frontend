@@ -18,18 +18,26 @@ function Fact({ fact,id,category, subcategory }) {
             {expanded && (
                 <div className="fact-details">
                     <label>
-                        <h3>fact:</h3>
+                        <h3>Fact:</h3>
                         <div
                             className="autoscale-field"
-                            dangerouslySetInnerHTML={{ __html: taxonomy }}
+                            dangerouslySetInnerHTML={{ __html: fact }}
                         ></div>
                     </label>
                     <br />
                     <label>
-                        <h3>category:</h3>
+                        <h3>Category:</h3>
                         <div
                             className="autoscale-field"
-                            dangerouslySetInnerHTML={{ __html: characteristics }}
+                            dangerouslySetInnerHTML={{ __html: category }}
+                        ></div>
+                    </label>
+                    <br />
+                    <label>
+                        <h3>Subcategory:</h3>
+                        <div
+                            className="autoscale-field"
+                            dangerouslySetInnerHTML={{ __html: subcategory }}
                         ></div>
                     </label>
                 </div>
