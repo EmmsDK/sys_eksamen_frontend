@@ -5,7 +5,7 @@ import Animal from "./Animal.jsx";
 
 function InputFieldAnimal({user}) {
     const [inputData, setInputData] = useState("");
-    const [animalData, setAnimalData] = useState("", "", ""); // New state for animal data
+    const [animalData, setAnimalData] = useState(""); // New state for animal data
 
     const handleSubmit = async (event) => {
         event.preventDefault();
