@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import { FactUrl, FavFactURL} from '../Setting.js'
+import { FactUrl, FavFactURL, homemadeURL} from '../Setting.js'
 
 function RandomFact() {
     const [input, setInput] = useState('');
-    const [fact, setFact] = useState('');
+    const [newFact, setNewFact] = useState('');
 
     const handleInput = (event) => {
         setInput(event.target.value);
@@ -12,13 +12,27 @@ function RandomFact() {
 
     const handleGetFactClick = async () => {
         try {
-            const response = await axios.get(FactUrl);
-            const data = response.data;
-            setFact(data);
+          const cacheControl = 'no-cache'; // Cache control header value
+          
+          const response = await fetch(`${homemadeURL}?category=${input}`, {
+            headers: {
+              'Cache-Control': cacheControl
+            }
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            console.log(data);
+            console.log(input);
+            setNewFact(data);
+          } else {
+            console.error('Error fetching random fact:', response.status);
+          }
         } catch (error) {
-            console.error('Error fetching random fact:', error);
+          console.error('Error fetching random fact:', error);
         }
-    };
+      };
+      
 
     function toggleFavorite(id) {
         const newFavorites = new Set(favorites);
@@ -31,7 +45,7 @@ function RandomFact() {
     }
 
     const handleSaveAsFavoriteClick = async () => {
-        if (fact) {
+        if (newFact) {
             const response = await axios.post(FavFactURL, {
                 fact: fact,
             });
@@ -43,8 +57,8 @@ function RandomFact() {
         <div>
             <input type="text" value={input} onChange={handleInput}/>
             <button onClick={handleGetFactClick}>Get Fact</button>
-            <p>{fact}</p>
-            {fact && (
+            <p>{newFact}</p>
+            {newFact && (
                 <button onClick={handleSaveAsFavoriteClick}>Save as Favorite</button>
             )}
         </div>
